@@ -27,5 +27,8 @@
     <string name="title_activity_edit_category">EditCategoryActivity</string>
     <string name="newCategory">Nome Categoria</string>
     <string name="editCategoryText">Gravar</string>
+    <string name="nomeObjeto">Nome do Objeto</string>
+    <string name="contato">Contado</string>
+    <string name="dataDevolucao">Data de Devolução</string>
 
 </resources>

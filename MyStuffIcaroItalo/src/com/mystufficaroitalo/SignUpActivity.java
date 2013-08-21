@@ -13,11 +13,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONStringer;
 
-import com.mystufficaroitalo.MainActivity.LoginTask;
 import com.mystufficaroitalo.R;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;

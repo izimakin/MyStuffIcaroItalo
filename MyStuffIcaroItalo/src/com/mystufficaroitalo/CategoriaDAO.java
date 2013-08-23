@@ -60,7 +60,7 @@ public class CategoriaDAO {
 		Database database = new Database(context);
 
 		ContentValues cv = new ContentValues();
-		cv.put("nome", categoria.getNome());
+		cv.put("nome_categoria", categoria.getNome());
 
 		String[] args = new String[1];
 		args[0] = String.valueOf(categoria.getId());

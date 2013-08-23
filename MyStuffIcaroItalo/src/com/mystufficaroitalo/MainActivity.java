@@ -10,6 +10,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.json.JSONStringer;
 
 import com.mystufficaroitalo.R;
@@ -155,6 +156,7 @@ public class MainActivity extends Activity {
 
 			try {
 				answer = EntityUtils.toString(response.getEntity());
+				
 			} catch (ParseException e) {
 
 				e.printStackTrace();
@@ -172,6 +174,7 @@ public class MainActivity extends Activity {
 
 			Log.i("AVISO DO RESULTADO", param);
 
+			insertUsuarioDB(param);
 			doStuff();
 
 		}
@@ -180,6 +183,17 @@ public class MainActivity extends Activity {
 	    protected void onPreExecute() {
 	        progressDialog = ProgressDialog.show(context, "Aguarde...", "Envio de dados para servidor", true, true);
 	    }
+		
+		private void insertUsuarioDB(String response) {
+			Usuario usuario;
+			try {
+				usuario = Util.jsonParaUsuario(new JSONObject((new JSONObject(response)).getString("data")));
+				UsuarioDAO.getInstance().insert(context, usuario);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			
+		}
 
 	}
 

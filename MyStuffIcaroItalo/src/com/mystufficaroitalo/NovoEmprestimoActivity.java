@@ -21,8 +21,8 @@ public class NovoEmprestimoActivity extends Activity {
 	String dtDevolucao = null;
 	
 	private void preencherSpinnerCategoria() {
-		CategoriaDao categoriaDao = CategoriaDao.getInstance(getApplication());
-		List<Categoria> listCategorias = categoriaDao.listarCategorias();
+		CategoriaDAO categoriaDao = CategoriaDAO.getInstance();
+		List<Categoria> listCategorias = categoriaDao.listarCategorias(this, Usuario.getInstance());
 		String[] strListarCategoria = new String[listCategorias.size()];
 		for (int i=0; i < strListarCategoria.length; ++i) {
 			strListarCategoria[i] = listCategorias.get(i).getNome();

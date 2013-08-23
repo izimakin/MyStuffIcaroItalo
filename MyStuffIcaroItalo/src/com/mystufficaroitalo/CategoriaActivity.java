@@ -25,8 +25,8 @@ public class CategoriaActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		CategoriaDao categoriaDao = CategoriaDao.getInstance(getApplication());
-		List<Categoria> listCategorias = categoriaDao.listarCategorias();
+		CategoriaDAO categoriaDAO = CategoriaDAO.getInstance();
+		List<Categoria> listCategorias = categoriaDAO.listarCategorias(this, Usuario.getInstance());
 		ListView lvListarCategoria = (ListView) findViewById(R.id.listarCategoria);
 		String[] strListarCategoria = new String[listCategorias.size()];
 		for (int i=0; i < strListarCategoria.length; ++i) {

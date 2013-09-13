@@ -5,19 +5,19 @@ import java.io.Serializable;
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 8353398218393434035L;
-	private static Usuario usuario = null;
 	private long id;
 	private String numeroTelefone;
 	private String email;
 	private String senha;
 
-	private Usuario () {
+	public Usuario () {
 	}
 	
-	public static Usuario getInstance() {
-		if (usuario == null)
-			usuario = new Usuario();
-		return usuario;
+	public Usuario (long id, String numeroTelefone, String email, String senha) {
+		this.id = id;
+		this.numeroTelefone = numeroTelefone;
+		this.email = email;
+		this.senha = senha;
 	}
 
 	public String getNumeroTelefone() {

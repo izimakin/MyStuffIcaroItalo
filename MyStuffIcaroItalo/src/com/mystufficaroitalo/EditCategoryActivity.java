@@ -50,7 +50,7 @@ public class EditCategoryActivity extends Activity {
 			Categoria categoria = new Categoria();
 			CategoriaDAO categoriaDAO = CategoriaDAO.getInstance();
 			categoria.setNome(strNomeCategoria);
-			categoria.setUsuario(Usuario.getInstance());
+			categoria.setUsuario(UsuarioLogado.getInstance().getUsuario());
 			categoriaDAO.inserirCategoria(context, categoria);
 			finish();
 

@@ -22,7 +22,7 @@ public class NovoEmprestimoActivity extends Activity {
 	
 	private void preencherSpinnerCategoria() {
 		CategoriaDAO categoriaDao = CategoriaDAO.getInstance();
-		List<Categoria> listCategorias = categoriaDao.listarCategorias(this, Usuario.getInstance());
+		List<Categoria> listCategorias = categoriaDao.listarCategorias(this, UsuarioLogado.getInstance().getUsuario());
 		String[] strListarCategoria = new String[listCategorias.size()];
 		for (int i=0; i < strListarCategoria.length; ++i) {
 			strListarCategoria[i] = listCategorias.get(i).getNome();

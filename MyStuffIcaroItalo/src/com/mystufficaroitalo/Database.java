@@ -15,14 +15,17 @@ public class Database extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL(usuarioTable());
 		db.execSQL(categoriaTable());
+		db.execSQL(emprestimoTable());
+		db.execSQL(contatoTable());
+		db.execSQL(objetoTable());
 	}
 
 	private String categoriaTable() {
 		StringBuilder sql = new StringBuilder();
 		sql.append("CREATE TABLE Categoria (").
 		append("id_categoria INTEGER PRIMARY KEY, ").
-		append("id_usuario INTEGER, ").
 		append("nome_categoria TEXT UNIQUE NOT NULL,").
+		append("id_usuario INTEGER, ").
 		append("FOREIGN KEY (id_usuario) REFERENCES Usuario (id_usuario)").
 		append(");");
 		
@@ -33,7 +36,7 @@ public class Database extends SQLiteOpenHelper {
 		StringBuilder sql = new StringBuilder();
 		sql.append("CREATE TABLE Usuario (").
 		append("id_usuario INTEGER PRIMARY KEY, ").
-		append("numeroTelefone TEXT UNIQUE NOT NULL, ").
+		append("numero_telefone TEXT UNIQUE NOT NULL, ").
 		append("email TEXT UNIQUE NOT NULL ").
 		append(");");
 		return sql.toString();
@@ -45,6 +48,9 @@ public class Database extends SQLiteOpenHelper {
 		append("id_emprestimo INTEGER PRIMARY KEY, ").
 		append("data_emprestimo TEXT NOT NULL,").
 		append("data_devolucao TEXT NOT NULL,").
+		append("id_usuario INTEGER, ").
+		append("id_objeto INTEGER, ").
+		append("id_contato INTEGER, ").
 		append("FOREIGN KEY (id_usuario) REFERENCES Usuario (id_usuario),").
 		append("FOREIGN KEY (id_objeto) REFERENCES Categoria (id_objeto),").
 		append("FOREIGN KEY (id_contato) REFERENCES Contato (id_contato)").
@@ -57,6 +63,7 @@ public class Database extends SQLiteOpenHelper {
 		sql.append("CREATE TABLE Objeto (").
 		append("id_objeto INTEGER PRIMARY KEY,").
 		append("nome_objeto TEXT UNIQUE NOT NULL,").
+		append("id_categoria INTEGER, ").
 		append("FOREIGN KEY (id_categoria) REFERENCES Categoria (id_categoria)").
 		append(");");
 		return sql.toString();
@@ -66,7 +73,7 @@ public class Database extends SQLiteOpenHelper {
 		StringBuilder sql = new StringBuilder();
 		sql.append("CREATE TABLE Contato (").
 		append("id_contato INTEGER PRIMARY KEY,").
-		append("numeroTelefone TEXT UNIQUE NOT NULL,").
+		append("numero_telefone TEXT UNIQUE NOT NULL,").
 		append("email TEXT UNIQUE NOT NULL").
 		append(");");
 		return sql.toString();
@@ -77,6 +84,9 @@ public class Database extends SQLiteOpenHelper {
 		try {
 			db.execSQL(dropTable("Usuario"));
 			db.execSQL(dropTable("Categoria"));
+			db.execSQL(dropTable("Emprestimo"));
+			db.execSQL(dropTable("Objeto"));
+			db.execSQL(dropTable("Contato"));
 		} catch (Exception e) {
 			Log.i("INFO", e.getMessage());
 		}

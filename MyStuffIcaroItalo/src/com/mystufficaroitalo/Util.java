@@ -9,7 +9,7 @@ public class Util {
 	}
 	
 	public static Usuario jsonParaUsuario(JSONObject jsonObject) throws JSONException {
-		Usuario result = Usuario.getInstance();
+		Usuario result = new Usuario();
 		
 		String telefone = jsonObject.getString("numeroTelefone");
 		String email = jsonObject.getString("email");

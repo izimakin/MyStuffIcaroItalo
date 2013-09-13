@@ -77,7 +77,7 @@ public class CategoriaDAO {
 		Categoria categoria = null;
 
 		Database database = new Database(context);
-		String sql = "SELECT id, nome FROM Categoria where id_usuario = ?;";
+		String sql = "SELECT id_categoria, nome_categoria FROM Categoria where id_usuario = ?;";
 
 		String[] args = new String[1];
 		args[0] = String.valueOf(usuario.getId());
@@ -89,14 +89,32 @@ public class CategoriaDAO {
 
 			categoria.setId(cursor.getLong(0));
 			categoria.setNome(cursor.getString(1));
+			categoria.setUsuario(usuario);
 
 			result.add(categoria);
-
 		}
 
 		cursor.close();
 		database.close();
 
 		return result;
+	}
+	
+	public Categoria getCategoria(Context context, long id) {
+		Database database = new Database(context);
+		
+		String sql = "SELECT id_categoria, nome_categoria, id_usuario FROM Categoria where id_categoria = ?;";
+		
+		String[] args = new String[1];
+		args[0] = (Long.valueOf(id)).toString();
+		
+		Cursor cursor = database.getReadableDatabase().rawQuery(sql, args);
+		
+		Categoria categoria = new Categoria();
+		categoria.setId(cursor.getLong(0));
+		categoria.setNome(cursor.getString(1));
+		categoria.setUsuario(UsuarioDAO.getInstance().getUsuario(context, cursor.getLong(2)));
+		
+		return categoria;
 	}
 }

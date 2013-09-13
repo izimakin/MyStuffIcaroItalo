@@ -188,6 +188,7 @@ public class MainActivity extends Activity {
 			Usuario usuario;
 			try {
 				usuario = Util.jsonParaUsuario(new JSONObject((new JSONObject(response)).getString("data")));
+				UsuarioLogado.getInstance().setUsuario(usuario);
 				UsuarioDAO.getInstance().insert(context, usuario);
 			} catch (JSONException e) {
 				e.printStackTrace();

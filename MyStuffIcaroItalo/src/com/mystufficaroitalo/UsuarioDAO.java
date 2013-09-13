@@ -101,4 +101,22 @@ public class UsuarioDAO {
 
 		usuario.setId(idAluno);
 	}
+	
+	public Usuario getUsuario(Context context, long id) {
+		Database database = new Database(context);
+		
+		String sql = "SELECT id_usuario, numeroTelefone, email FROM Usuario where id_usuario = ?;";
+		
+		String[] args = new String[1];
+		args[0] = (Long.valueOf(id)).toString();
+		
+		Cursor cursor = database.getReadableDatabase().rawQuery(sql, args);
+		
+		Usuario usuario = new Usuario();
+		usuario.setId(cursor.getLong(0));
+		usuario.setNumeroTelefone(cursor.getString(1));
+		usuario.setEmail(cursor.getString(2));
+		
+		return usuario;
+	}
 }

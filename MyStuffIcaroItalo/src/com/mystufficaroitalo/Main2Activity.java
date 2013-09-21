@@ -1,5 +1,7 @@
 package com.mystufficaroitalo;
 
+import java.util.List;
+
 import com.mystufficaroitalo.R;
 
 import android.app.ActionBar;
@@ -8,7 +10,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class Main2Activity extends Activity {
 
@@ -21,6 +24,20 @@ public class Main2Activity extends Activity {
 		actionBar.setDisplayShowTitleEnabled(false);
 		actionBar.setDisplayShowHomeEnabled(false);
 				
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		EmprestimoDAO emprestimoDao = EmprestimoDAO.getInstance();
+		List<Emprestimo> listEmprestimo = emprestimoDao.listarEmprestimo(this);
+		String[] strListarEmprestimo = new String[listEmprestimo.size()];
+		for (int i=0; i < strListarEmprestimo.length; ++i) {
+			strListarEmprestimo[i] = listEmprestimo.get(i).getNomeObjeto();
+		}
+		ListView s = (ListView) findViewById(R.id.listView1);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, strListarEmprestimo);
+		s.setAdapter(adapter);
 	}
 
 	@Override

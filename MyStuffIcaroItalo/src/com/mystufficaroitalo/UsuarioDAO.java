@@ -43,7 +43,7 @@ public class UsuarioDAO {
 			
 			ContentValues cv = new ContentValues();
 			cv.put("id_usuario", usuario.getId());
-			cv.put("numeroTelefone", usuario.getNumeroTelefone());
+			cv.put("numero_telefone", usuario.getNumeroTelefone());
 			cv.put("email", usuario.getEmail());
 
 			SQLiteDatabase db = database.getWritableDatabase();
@@ -105,17 +105,18 @@ public class UsuarioDAO {
 	public Usuario getUsuario(Context context, long id) {
 		Database database = new Database(context);
 		
-		String sql = "SELECT id_usuario, numeroTelefone, email FROM Usuario where id_usuario = ?;";
+		String sql = "SELECT id_usuario, numero_telefone, email FROM Usuario where id_usuario = ?;";
 		
 		String[] args = new String[1];
 		args[0] = (Long.valueOf(id)).toString();
 		
 		Cursor cursor = database.getReadableDatabase().rawQuery(sql, args);
-		
 		Usuario usuario = new Usuario();
-		usuario.setId(cursor.getLong(0));
-		usuario.setNumeroTelefone(cursor.getString(1));
-		usuario.setEmail(cursor.getString(2));
+		if (cursor.moveToFirst()) {
+			usuario.setId(cursor.getLong(0));
+			usuario.setNumeroTelefone(cursor.getString(1));
+			usuario.setEmail(cursor.getString(2));
+		}
 		
 		return usuario;
 	}

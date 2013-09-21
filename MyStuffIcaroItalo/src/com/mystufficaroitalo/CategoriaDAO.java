@@ -6,9 +6,6 @@ import java.util.List;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 public class CategoriaDAO {
 
@@ -44,7 +41,7 @@ public class CategoriaDAO {
 		Database database = new Database(context);
 
 		ContentValues cv = new ContentValues();
-		cv.put("nome", categoria.getNome());
+		cv.put("nome_categoria", categoria.getNome());
 		cv.put("id_usuario", categoria.getUsuario().getId());
 
 		long idCategoria = database.getWritableDatabase().insert("Categoria", null, cv);
@@ -109,11 +106,13 @@ public class CategoriaDAO {
 		args[0] = (Long.valueOf(id)).toString();
 		
 		Cursor cursor = database.getReadableDatabase().rawQuery(sql, args);
-		
+
 		Categoria categoria = new Categoria();
-		categoria.setId(cursor.getLong(0));
-		categoria.setNome(cursor.getString(1));
-		categoria.setUsuario(UsuarioDAO.getInstance().getUsuario(context, cursor.getLong(2)));
+		if (cursor.moveToFirst()) {
+			categoria.setId(cursor.getLong(0));
+			categoria.setNome(cursor.getString(1));
+			categoria.setUsuario(UsuarioDAO.getInstance().getUsuario(context, cursor.getLong(2)));
+		}
 		
 		return categoria;
 	}

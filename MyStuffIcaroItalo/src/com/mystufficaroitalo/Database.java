@@ -16,8 +16,6 @@ public class Database extends SQLiteOpenHelper {
 		db.execSQL(usuarioTable());
 		db.execSQL(categoriaTable());
 		db.execSQL(emprestimoTable());
-		db.execSQL(contatoTable());
-		db.execSQL(objetoTable());
 	}
 
 	private String categoriaTable() {
@@ -46,47 +44,25 @@ public class Database extends SQLiteOpenHelper {
 		StringBuilder sql = new StringBuilder();
 		sql.append("CREATE TABLE Emprestimo (").
 		append("id_emprestimo INTEGER PRIMARY KEY, ").
+		append("nome_objeto TEXT NOT NULL, ").
 		append("data_emprestimo TEXT NOT NULL,").
 		append("data_devolucao TEXT NOT NULL,").
+		append("telefone_contato TEXT NOT NULL, ").
+		append("url_foto TEXT NULL, ").
 		append("id_usuario INTEGER, ").
-		append("id_objeto INTEGER, ").
-		append("id_contato INTEGER, ").
-		append("FOREIGN KEY (id_usuario) REFERENCES Usuario (id_usuario),").
-		append("FOREIGN KEY (id_objeto) REFERENCES Categoria (id_objeto),").
-		append("FOREIGN KEY (id_contato) REFERENCES Contato (id_contato)").
-		append(");");
-		return sql.toString();
-	}
-	
-	private String objetoTable() {
-		StringBuilder sql = new StringBuilder();
-		sql.append("CREATE TABLE Objeto (").
-		append("id_objeto INTEGER PRIMARY KEY,").
-		append("nome_objeto TEXT UNIQUE NOT NULL,").
 		append("id_categoria INTEGER, ").
+		append("FOREIGN KEY (id_usuario) REFERENCES Usuario (id_usuario),").
 		append("FOREIGN KEY (id_categoria) REFERENCES Categoria (id_categoria)").
 		append(");");
 		return sql.toString();
 	}
 	
-	private String contatoTable() {
-		StringBuilder sql = new StringBuilder();
-		sql.append("CREATE TABLE Contato (").
-		append("id_contato INTEGER PRIMARY KEY,").
-		append("numero_telefone TEXT UNIQUE NOT NULL,").
-		append("email TEXT UNIQUE NOT NULL").
-		append(");");
-		return sql.toString();
-	}
-
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		try {
 			db.execSQL(dropTable("Usuario"));
 			db.execSQL(dropTable("Categoria"));
 			db.execSQL(dropTable("Emprestimo"));
-			db.execSQL(dropTable("Objeto"));
-			db.execSQL(dropTable("Contato"));
 		} catch (Exception e) {
 			Log.i("INFO", e.getMessage());
 		}

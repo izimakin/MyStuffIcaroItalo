@@ -9,12 +9,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class CategoriaActivity extends Activity {
 
 	
+	ListView lvListarCategoria;
+	List<Categoria> listCategorias;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,14 +31,32 @@ public class CategoriaActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		CategoriaDAO categoriaDAO = CategoriaDAO.getInstance();
-		List<Categoria> listCategorias = categoriaDAO.listarCategorias(this, UsuarioLogado.getInstance().getUsuario());
-		ListView lvListarCategoria = (ListView) findViewById(R.id.listarCategoria);
+		listCategorias = categoriaDAO.listarCategorias(this, UsuarioLogado.getInstance().getUsuario());
+		lvListarCategoria = (ListView) findViewById(R.id.listarCategoria);
 		String[] strListarCategoria = new String[listCategorias.size()];
 		for (int i=0; i < strListarCategoria.length; ++i) {
 			strListarCategoria[i] = listCategorias.get(i).getNome();
 		}
 		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, strListarCategoria);
 		lvListarCategoria.setAdapter(arrayAdapter);
+		
+		lvListarCategoria.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int pos,
+					long arg3) {
+								
+				Intent intent = new Intent();
+				Bundle bundle = new Bundle();
+				Categoria cat = listCategorias.get(pos);
+				bundle.putString("Nome", cat.getNome());
+				bundle.putLong("id", cat.getId());
+				intent.putExtras(bundle);
+				startActivity(intent);
+			
+			}			
+
+        });
 	}
 
 	@Override

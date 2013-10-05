@@ -74,9 +74,20 @@ public class Main2Activity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int pos,
 					long arg3) {
-				Emprestimo emp = empDoUsu.get(pos);
+								
 				Intent intent = new Intent();
-
+				Bundle bundle = new Bundle();
+				Emprestimo emp = empDoUsu.get(pos);
+				bundle.putLong("id", emp.getId());
+				bundle.putString("NomeObjeto", emp.getNomeObjeto());
+				bundle.putString("DataEmprestimo", emp.getDataEmprestimo());
+				bundle.putString("DataDevolucao", emp.getDataDevolucao());
+				bundle.putString("TelefoneContato", emp.getTelefoneContato());
+				bundle.putString("UrlFoto", emp.getUrlFoto());
+				bundle.putSerializable("Usuario", emp.getUsuario());
+				bundle.putSerializable("Categoria", emp.getCategoria());
+				intent.putExtras(bundle);
+				startActivity(intent);
 				
 			}			
 

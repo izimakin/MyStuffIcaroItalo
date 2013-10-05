@@ -1,6 +1,8 @@
 package com.mystufficaroitalo;
 
-public class Categoria {
+import java.io.Serializable;
+
+public class Categoria implements Serializable {
 
 	private long id;
 	private String nome;

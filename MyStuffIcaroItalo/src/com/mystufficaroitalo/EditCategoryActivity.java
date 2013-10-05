@@ -15,13 +15,28 @@ import com.mystufficaroitalo.R;
 
 public class EditCategoryActivity extends Activity {
 	
-	Context context = null;
+	private Context context = null;
+	private boolean edit;
+	private EditText etNomeCategoria;
+	private long id;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_edit_category);
 		context = this;
+		
+		etNomeCategoria = (EditText) findViewById(R.id.categoryBox);
+		
+		Intent i = getIntent();
+		Bundle x = i.getExtras();
+		
+		if (x.isEmpty()) edit = false;
+		else {
+			edit = true;
+			id = x.getLong("id");
+			etNomeCategoria.setText(x.getCharSequence("Nome"));
+		}
 
 		Button signup = (Button) findViewById(R.id.criaCategoriaBtn);
 		signup.setOnClickListener(handlerGravaCategoria);
@@ -45,15 +60,24 @@ public class EditCategoryActivity extends Activity {
 
 		public void onClick(View v) {
 
-			EditText etNomeCategoria = (EditText) findViewById(R.id.categoryBox);
 			String strNomeCategoria = etNomeCategoria.getText().toString();
 			Categoria categoria = new Categoria();
 			CategoriaDAO categoriaDAO = CategoriaDAO.getInstance();
 			categoria.setNome(strNomeCategoria);
 			categoria.setUsuario(UsuarioLogado.getInstance().getUsuario());
-			categoriaDAO.inserirCategoria(context, categoria);
+			
+			if (edit){
+				
+				categoria.setId(id);
+				categoriaDAO.update(context, categoria);
+				
+			} else {
+				
+				categoriaDAO.inserirCategoria(context, categoria);
+				
+			}
+			
 			finish();
-
 		}
 
 	};

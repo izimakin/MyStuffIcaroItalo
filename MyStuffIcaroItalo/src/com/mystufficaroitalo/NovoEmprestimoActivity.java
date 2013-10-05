@@ -8,6 +8,7 @@ import com.mystufficaroitalo.R;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,11 +20,23 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 public class NovoEmprestimoActivity extends Activity implements OnItemSelectedListener {
-	String nomeObjeto = null;
-	Categoria categoria = null;
-	String contato = null;
-	String dtDevolucao = null;
-	Context context = null;
+	private String nomeObjeto = null;
+	private Categoria categoria = null;
+	private String contato = null;
+	private String dtDevolucao = null;
+	private Context context = null;
+	private boolean edit;
+	private long id;
+	
+	//Elementos gráficos
+	EditText etNomeObjeto;
+	Spinner s;
+	EditText etContato;
+	EditText etDtDevolucao;
+	CharSequence etEmprestimo;
+	CharSequence urlFoto;
+	Usuario usuario;
+	Categoria categoriaObj;
 	
 	private void preencherSpinnerCategoria() {
 		CategoriaDAO categoriaDao = CategoriaDAO.getInstance();
@@ -42,6 +55,35 @@ public class NovoEmprestimoActivity extends Activity implements OnItemSelectedLi
 		
 		preencherSpinnerCategoria();
 		
+		Intent i = getIntent();
+		Bundle x = i.getExtras();
+		
+		if (x.isEmpty()) edit = false;
+		else {
+			edit = true;
+			id = x.getLong("id");
+			etNomeObjeto.setText(x.getCharSequence("NomeObjeto"));
+			etContato.setText(x.getCharSequence("TelefoneContato"));
+			etDtDevolucao.setText(x.getCharSequence("DataDevolucao"));
+			etEmprestimo = x.getCharSequence("DataEmprestimo");
+			urlFoto = x.getCharSequence("UrlFoto");
+			categoriaObj = (Categoria) x.getSerializable("Categoria");
+			s = (Spinner) findViewById(R.id.spinnerCategoria);
+			
+			int j = 0;
+			while (j < s.getAdapter().getCount()){
+				
+				Categoria temp = (Categoria) s.getItemAtPosition(j);
+				
+				if (temp.getNome().contentEquals(categoriaObj.getNome())) {
+					s.setSelection(j);
+					break;
+				}
+				
+				j++;
+			}
+		}
+		
 		Button cadastrarEmprestivo = (Button) findViewById(R.id.cadastrarEmprestimo);
 		cadastrarEmprestivo.setOnClickListener(handlerCadastrarEmprestimo);
 		
@@ -52,31 +94,44 @@ public class NovoEmprestimoActivity extends Activity implements OnItemSelectedLi
 	OnClickListener handlerCadastrarEmprestimo = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			EditText etNomeObjeto = (EditText) findViewById(R.id.etNomeObjeto);
+			etNomeObjeto = (EditText) findViewById(R.id.etNomeObjeto);
 			nomeObjeto = etNomeObjeto.getText().toString();
 			
-			Spinner s = (Spinner) findViewById(R.id.spinnerCategoria);
-			categoria = (Categoria) s.getSelectedItem();
 			
-			EditText etContato = (EditText) findViewById(R.id.etContato);
+			
+			etContato = (EditText) findViewById(R.id.etContato);
 			contato = etContato.getText().toString();
 			
-			EditText etDtDevolucao = (EditText) findViewById(R.id.etDtDevolucao);
+			etDtDevolucao = (EditText) findViewById(R.id.etDtDevolucao);
 			dtDevolucao = etDtDevolucao.getText().toString();
 			
 			Emprestimo emprestimo = new Emprestimo();
 			
 			emprestimo.setNomeObjeto(nomeObjeto);
-			emprestimo.setDataEmprestimo((new Date(System.currentTimeMillis())).toString());
+			
 			emprestimo.setDataDevolucao(dtDevolucao);
 			emprestimo.setTelefoneContato(contato);
 			emprestimo.setUrlFoto("inserirURLFoto");
 			emprestimo.setFlagEmprestimo(1);
 			emprestimo.setUsuario(UsuarioLogado.getInstance().getUsuario());
-			emprestimo.setCategoria(categoria);
 			
-			emprestimo = EmprestimoDAO.getInstance().inserirEmprestimo(context, emprestimo);
 			
+			if (edit){
+				
+				emprestimo.setCategoria(categoriaObj);
+				emprestimo.setDataEmprestimo(etEmprestimo.toString());	
+				EmprestimoDAO.getInstance().update(context, emprestimo);
+								
+			} else{
+				
+				s = (Spinner) findViewById(R.id.spinnerCategoria);
+				categoria = (Categoria) s.getSelectedItem();
+				emprestimo.setCategoria(categoria);
+				
+				emprestimo.setDataEmprestimo((new Date(System.currentTimeMillis())).toString());
+				emprestimo = EmprestimoDAO.getInstance().inserirEmprestimo(context, emprestimo);
+				
+			}
 			finish();
 		}
 	};

@@ -82,23 +82,7 @@ public class MainActivity extends Activity {
 	OnClickListener handlerLogin = new OnClickListener() {
 		
 		public void onClick(View v) {
-
-			EditText phoneBox = (EditText) findViewById(R.id.phoneBox);
-			EditText passBox = (EditText) findViewById(R.id.passBox);
 			
-			Usuario usuario = new Usuario();
-			usuario.setId(0);
-			usuario.setNumeroTelefone("12345678");
-			usuario.setSenha("umasenhafalse");
-			usuario.setEmail("fake@gmail.com");
-
-			UsuarioLogado.getInstance().setUsuario(UsuarioDAO.getInstance().insert(context, usuario));
-			
-			Intent it = new Intent(context, Main2Activity.class);
-
-			startActivity(it);
-			
-			/*
 			String params[] = new String[2];
 
 			EditText phoneBox = (EditText) findViewById(R.id.phoneBox);
@@ -114,7 +98,6 @@ public class MainActivity extends Activity {
 				Toast.makeText(MainActivity.this, e.getMessage(),
 						Toast.LENGTH_SHORT).show();
 			}
-			*/
 		}
 		
 	};

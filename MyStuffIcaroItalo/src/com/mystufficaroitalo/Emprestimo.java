@@ -9,6 +9,7 @@ public class Emprestimo {
 	private String dataDevolucao;
 	private String telefoneContato;
 	private String urlFoto;
+	private long flagEmprestimo;
 	private Usuario usuario;
 	private Categoria categoria;
 	
@@ -63,6 +64,14 @@ public class Emprestimo {
 	public void setUrlFoto(String urlFoto) {
 		this.urlFoto = urlFoto;
 	}
+
+	public long getFlagEmprestimo() {
+		return flagEmprestimo;
+	}
+
+	public void setFlagEmprestimo(long flagEmprestimo) {
+		this.flagEmprestimo = flagEmprestimo;
+	}
 	
 	public Usuario getUsuario() {
 		return usuario;
@@ -79,4 +88,5 @@ public class Emprestimo {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
+
 }

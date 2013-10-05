@@ -46,7 +46,7 @@ public class NovoEmprestimoActivity extends Activity implements OnItemSelectedLi
 		cadastrarEmprestivo.setOnClickListener(handlerCadastrarEmprestimo);
 		
 		Button cancelarEmprestimo = (Button) findViewById(R.id.cancelarEmprestimo);
-		cancelarEmprestimo.setOnClickListener(handlerCadastrarEmprestimo);
+		cancelarEmprestimo.setOnClickListener(handlerCancelarEmprestimo);
 	}
 	
 	OnClickListener handlerCadastrarEmprestimo = new OnClickListener() {
@@ -71,6 +71,7 @@ public class NovoEmprestimoActivity extends Activity implements OnItemSelectedLi
 			emprestimo.setDataDevolucao(dtDevolucao);
 			emprestimo.setTelefoneContato(contato);
 			emprestimo.setUrlFoto("inserirURLFoto");
+			emprestimo.setFlagEmprestimo(1);
 			emprestimo.setUsuario(UsuarioLogado.getInstance().getUsuario());
 			emprestimo.setCategoria(categoria);
 			

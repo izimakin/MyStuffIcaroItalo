@@ -46,6 +46,7 @@ public class EmprestimoDAO {
 		cv.put("data_devolucao", emprestimo.getDataDevolucao().toString());
 		cv.put("telefone_contato", emprestimo.getTelefoneContato());
 		cv.put("url_foto", emprestimo.getUrlFoto());
+		cv.put("flag_emprestimo", emprestimo.getFlagEmprestimo());
 		cv.put("id_usuario", emprestimo.getUsuario().getId());
 		cv.put("id_categoria", emprestimo.getCategoria().getId());
 
@@ -92,6 +93,7 @@ public class EmprestimoDAO {
 	                   "data_devolucao, " +
 	                   "telefone_contato, " +
 	                   "url_foto, " +
+	                   "flag_emprestimo, " +
 	                   "id_usuario, " +
 	                   "id_categoria " +
 	            "FROM Emprestimo;";
@@ -109,8 +111,9 @@ public class EmprestimoDAO {
 			emprestimo.setDataDevolucao(cursor.getString(3));
 			emprestimo.setTelefoneContato(cursor.getString(4));
 			emprestimo.setUrlFoto(cursor.getString(5));
-			emprestimo.setUsuario(UsuarioDAO.getInstance().getUsuario(context, cursor.getLong(6)));
-			emprestimo.setCategoria(CategoriaDAO.getInstance().getCategoria(context, cursor.getLong(7)));
+			emprestimo.setFlagEmprestimo(cursor.getLong(6));
+			emprestimo.setUsuario(UsuarioDAO.getInstance().getUsuario(context, cursor.getLong(7)));
+			emprestimo.setCategoria(CategoriaDAO.getInstance().getCategoria(context, cursor.getLong(8)));
 
 			result.add(emprestimo);
 		}

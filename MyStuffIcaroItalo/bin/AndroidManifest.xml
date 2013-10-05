@@ -44,6 +44,7 @@
             android:name="com.mystufficaroitalo.EditCategoryActivity"
             android:label="@string/title_activity_edit_category" >
         </activity>
+        <service android:name="com.mystufficaroitalo.EmprestimoService"></service>
     </application>
 
 </manifest>

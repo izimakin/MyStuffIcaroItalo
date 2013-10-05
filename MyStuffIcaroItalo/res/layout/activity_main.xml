@@ -27,7 +27,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView2"
         android:ems="10"
-        android:inputType="text" />
+        android:inputType="textPassword" />
 
     <TextView
         android:id="@+id/textView1"

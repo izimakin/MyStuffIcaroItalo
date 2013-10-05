@@ -47,13 +47,14 @@ public final class R {
         public static final int loginBox=0x7f080016;
         public static final int loginBtn=0x7f080009;
         public static final int logoView=0x7f080008;
-        public static final int logout=0x7f080021;
+        public static final int logout=0x7f080022;
         public static final int novoEmprestimo=0x7f08001f;
         public static final int pass1Box=0x7f080018;
         public static final int pass2Box=0x7f080019;
         public static final int passBox=0x7f080006;
         public static final int phoneBox=0x7f080005;
         public static final int signUp=0x7f08000a;
+        public static final int sincronizar=0x7f080021;
         public static final int spinnerCategoria=0x7f08000f;
         public static final int textView1=0x7f080001;
         public static final int textView2=0x7f080007;
@@ -102,6 +103,7 @@ public final class R {
         public static final int password_again=0x7f05000a;
         public static final int signUp=0x7f050006;
         public static final int signupBtn=0x7f05000c;
+        public static final int sincronizar=0x7f05001d;
         public static final int title_activity_categoria=0x7f050013;
         public static final int title_activity_edit_category=0x7f050017;
         public static final int title_activity_main2=0x7f05000d;

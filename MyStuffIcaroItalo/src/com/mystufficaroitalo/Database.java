@@ -49,6 +49,8 @@ public class Database extends SQLiteOpenHelper {
 		append("data_devolucao TEXT NOT NULL,").
 		append("telefone_contato TEXT NOT NULL, ").
 		append("url_foto TEXT NULL, ").
+		// Flag para identificar se o objeto foi emprestado ao usuario(0) ou pelo usuário(1)
+		append("flag_emprestimo INTEGER, ").
 		append("id_usuario INTEGER, ").
 		append("id_categoria INTEGER, ").
 		append("FOREIGN KEY (id_usuario) REFERENCES Usuario (id_usuario),").

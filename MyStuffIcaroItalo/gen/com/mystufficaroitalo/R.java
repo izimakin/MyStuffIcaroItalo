@@ -41,7 +41,7 @@ public final class R {
         public static final int etContato=0x7f080011;
         public static final int etDtDevolucao=0x7f080013;
         public static final int etNomeObjeto=0x7f08000e;
-        public static final int imageButton1=0x7f08000d;
+        public static final int img_foto=0x7f08000d;
         public static final int listView1=0x7f08000b;
         public static final int listView2=0x7f08000c;
         public static final int listarCategoria=0x7f080000;
@@ -93,6 +93,7 @@ public final class R {
         public static final int email=0x7f050009;
         public static final int emprestei=0x7f05000e;
         public static final int hello_world=0x7f050008;
+        public static final int img_foto_objeto=0x7f05001f;
         public static final int login=0x7f050002;
         public static final int loginBtn=0x7f050005;
         public static final int logo_desc=0x7f050004;

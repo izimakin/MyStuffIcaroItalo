@@ -32,5 +32,6 @@
     <string name="dataDevolucao">Data de Devolução</string>
     <string name="sincronizar">Sincronizar</string>
     <string name="baixar">Baixar</string>
+    <string name="img_foto_objeto">Foto do Objeto</string>
 
 </resources>

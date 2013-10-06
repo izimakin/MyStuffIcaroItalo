@@ -45,6 +45,12 @@
             android:label="@string/title_activity_edit_category" >
         </activity>
         <service android:name="com.mystufficaroitalo.EmprestimoService"></service>
+        <receiver android:name="com.mystufficaroitalo.EmprestimoReceive">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

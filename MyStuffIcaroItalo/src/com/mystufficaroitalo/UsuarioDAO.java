@@ -30,7 +30,7 @@ public class UsuarioDAO {
 		String[] args = new String[1];
 		args[0] = String.valueOf(usuario.getId());
 
-		database.getWritableDatabase().delete("Usuario", "id=?", args);
+		database.getWritableDatabase().delete("Usuario", "id_usuario=?", args);
 
 		database.close();
 
@@ -95,7 +95,7 @@ public class UsuarioDAO {
 		String[] args = new String[1];
 		args[0] = String.valueOf(usuario.getId());
 
-		long idAluno = database.getWritableDatabase().update("Usuario", cv, "id=?", args);
+		long idAluno = database.getWritableDatabase().update("Usuario", cv, "id_usuario=?", args);
 
 		database.close();
 

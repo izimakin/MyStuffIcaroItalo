@@ -30,7 +30,7 @@ public class CategoriaDAO {
 		String[] args = new String[1];
 		args[0] = String.valueOf(categoria.getId());
 
-		database.getWritableDatabase().delete("Categoria", "id=?", args);
+		database.getWritableDatabase().delete("Categoria", "id_categoria=?", args);
 
 		database.close();
 
@@ -62,7 +62,7 @@ public class CategoriaDAO {
 		String[] args = new String[1];
 		args[0] = String.valueOf(categoria.getId());
 
-		long idCategoria = database.getWritableDatabase().update("Categoria", cv, "id=?", args);
+		long idCategoria = database.getWritableDatabase().update("Categoria", cv, "id_categoria=?", args);
 
 		database.close();
 

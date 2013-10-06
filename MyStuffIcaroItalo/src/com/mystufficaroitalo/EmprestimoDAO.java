@@ -30,7 +30,7 @@ public class EmprestimoDAO {
 		String[] args = new String[1];
 		args[0] = String.valueOf(emprestimo.getId());
 		
-		database.getWritableDatabase().delete("Emprestimo", "id=?", args);
+		database.getWritableDatabase().delete("Emprestimo", "id_emprestimo=?", args);
 
 		database.close();
 
@@ -74,7 +74,7 @@ public class EmprestimoDAO {
 		String[] args = new String[1];
 		args[0] = String.valueOf(emprestimo.getId());
 
-		long idEmprestimo = database.getWritableDatabase().update("Emprestimo", cv, "id=?", args);
+		long idEmprestimo = database.getWritableDatabase().update("Emprestimo", cv, "id_emprestimo=?", args);
 
 		database.close();
 

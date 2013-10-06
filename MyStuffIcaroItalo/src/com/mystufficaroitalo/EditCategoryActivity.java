@@ -31,7 +31,7 @@ public class EditCategoryActivity extends Activity {
 		Intent i = getIntent();
 		Bundle x = i.getExtras();
 		
-		if (x.isEmpty()) edit = false;
+		if ( x == null || x.isEmpty()) edit = false;
 		else {
 			edit = true;
 			id = x.getLong("id");

@@ -58,12 +58,15 @@ public class NovoEmprestimoActivity extends Activity implements OnItemSelectedLi
 		Intent i = getIntent();
 		Bundle x = i.getExtras();
 		
-		if (x.isEmpty()) edit = false;
+		if (x == null || x.isEmpty()) edit = false;
 		else {
 			edit = true;
 			id = x.getLong("id");
+			etNomeObjeto = (EditText) findViewById(R.id.etNomeObjeto);
 			etNomeObjeto.setText(x.getCharSequence("NomeObjeto"));
+			etContato = (EditText) findViewById(R.id.etContato);
 			etContato.setText(x.getCharSequence("TelefoneContato"));
+			etDtDevolucao = (EditText) findViewById(R.id.etDtDevolucao);
 			etDtDevolucao.setText(x.getCharSequence("DataDevolucao"));
 			etEmprestimo = x.getCharSequence("DataEmprestimo");
 			urlFoto = x.getCharSequence("UrlFoto");
@@ -89,6 +92,9 @@ public class NovoEmprestimoActivity extends Activity implements OnItemSelectedLi
 		
 		Button cancelarEmprestimo = (Button) findViewById(R.id.cancelarEmprestimo);
 		cancelarEmprestimo.setOnClickListener(handlerCancelarEmprestimo);
+		
+		Button baixarEmprestimo = (Button) findViewById(R.id.baixarEmprestimo);
+		baixarEmprestimo.setOnClickListener(handlerBaixarEmprestimo);
 	}
 	
 	OnClickListener handlerCadastrarEmprestimo = new OnClickListener() {
@@ -96,8 +102,6 @@ public class NovoEmprestimoActivity extends Activity implements OnItemSelectedLi
 		public void onClick(View v) {
 			etNomeObjeto = (EditText) findViewById(R.id.etNomeObjeto);
 			nomeObjeto = etNomeObjeto.getText().toString();
-			
-			
 			
 			etContato = (EditText) findViewById(R.id.etContato);
 			contato = etContato.getText().toString();
@@ -117,7 +121,7 @@ public class NovoEmprestimoActivity extends Activity implements OnItemSelectedLi
 			
 			
 			if (edit){
-				
+				emprestimo.setId(id);
 				emprestimo.setCategoria(categoriaObj);
 				emprestimo.setDataEmprestimo(etEmprestimo.toString());	
 				EmprestimoDAO.getInstance().update(context, emprestimo);
@@ -140,6 +144,21 @@ public class NovoEmprestimoActivity extends Activity implements OnItemSelectedLi
 		
 		@Override
 		public void onClick(View v) {
+			finish();
+		}
+	};
+	
+	OnClickListener handlerBaixarEmprestimo = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			if (edit){
+				Emprestimo emprestimo = new Emprestimo();
+				
+				emprestimo.setId(id);	
+				EmprestimoDAO.getInstance().delete(context, emprestimo);
+								
+			}
 			finish();
 		}
 	};

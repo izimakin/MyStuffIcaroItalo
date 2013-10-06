@@ -26,17 +26,18 @@ public final class R {
         public static final int no_photo=0x7f020002;
     }
     public static final class id {
-        public static final int action_settings=0x7f08001c;
-        public static final int back=0x7f08001d;
-        public static final int btnCancel=0x7f08001a;
-        public static final int btnSignUp=0x7f08001b;
+        public static final int action_settings=0x7f08001d;
+        public static final int back=0x7f08001e;
+        public static final int baixarEmprestimo=0x7f080016;
+        public static final int btnCancel=0x7f08001b;
+        public static final int btnSignUp=0x7f08001c;
         public static final int cadastrarEmprestimo=0x7f080014;
         public static final int cancelarEmprestimo=0x7f080015;
-        public static final int categoria=0x7f080020;
+        public static final int categoria=0x7f080021;
         public static final int categoryBox=0x7f080002;
         public static final int criaCategoriaBtn=0x7f080003;
-        public static final int editCategory=0x7f08001e;
-        public static final int emailBox=0x7f080017;
+        public static final int editCategory=0x7f08001f;
+        public static final int emailBox=0x7f080018;
         public static final int etContato=0x7f080011;
         public static final int etDtDevolucao=0x7f080013;
         public static final int etNomeObjeto=0x7f08000e;
@@ -44,17 +45,17 @@ public final class R {
         public static final int listView1=0x7f08000b;
         public static final int listView2=0x7f08000c;
         public static final int listarCategoria=0x7f080000;
-        public static final int loginBox=0x7f080016;
+        public static final int loginBox=0x7f080017;
         public static final int loginBtn=0x7f080009;
         public static final int logoView=0x7f080008;
-        public static final int logout=0x7f080022;
-        public static final int novoEmprestimo=0x7f08001f;
-        public static final int pass1Box=0x7f080018;
-        public static final int pass2Box=0x7f080019;
+        public static final int logout=0x7f080023;
+        public static final int novoEmprestimo=0x7f080020;
+        public static final int pass1Box=0x7f080019;
+        public static final int pass2Box=0x7f08001a;
         public static final int passBox=0x7f080006;
         public static final int phoneBox=0x7f080005;
         public static final int signUp=0x7f08000a;
-        public static final int sincronizar=0x7f080021;
+        public static final int sincronizar=0x7f080022;
         public static final int spinnerCategoria=0x7f08000f;
         public static final int textView1=0x7f080001;
         public static final int textView2=0x7f080007;
@@ -82,6 +83,7 @@ public final class R {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
         public static final int back=0x7f050015;
+        public static final int baixar=0x7f05001e;
         public static final int cancel=0x7f05000b;
         public static final int categoria=0x7f050011;
         public static final int contato=0x7f05001b;

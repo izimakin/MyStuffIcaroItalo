@@ -5,6 +5,7 @@ import java.util.List;
 import com.mystufficaroitalo.R;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,7 +18,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class CategoriaActivity extends Activity {
 
-	
+	Context context = this;
 	ListView lvListarCategoria;
 	List<Categoria> listCategorias;
 	
@@ -46,7 +47,7 @@ public class CategoriaActivity extends Activity {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int pos,
 					long arg3) {
 								
-				Intent intent = new Intent();
+				Intent intent = new Intent(context, EditCategoryActivity.class);
 				Bundle bundle = new Bundle();
 				Categoria cat = listCategorias.get(pos);
 				bundle.putString("Nome", cat.getNome());

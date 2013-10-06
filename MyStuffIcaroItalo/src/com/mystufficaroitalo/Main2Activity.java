@@ -7,6 +7,7 @@ import com.mystufficaroitalo.R;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 
 public class Main2Activity extends Activity {
 
+	Context context = this;
 	List<Emprestimo> empDoUsu;
 	List<Emprestimo> empAoUsu;
 	
@@ -75,7 +77,7 @@ public class Main2Activity extends Activity {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int pos,
 					long arg3) {
 								
-				Intent intent = new Intent();
+				Intent intent = new Intent(context, NovoEmprestimoActivity.class);
 				Bundle bundle = new Bundle();
 				Emprestimo emp = empDoUsu.get(pos);
 				bundle.putLong("id", emp.getId());

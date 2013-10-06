@@ -31,5 +31,6 @@
     <string name="contato">Contado</string>
     <string name="dataDevolucao">Data de Devolução</string>
     <string name="sincronizar">Sincronizar</string>
+    <string name="baixar">Baixar</string>
 
 </resources>
